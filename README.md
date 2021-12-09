@@ -1,3 +1,7 @@
+```bash
+uvicorn main:app
+```
+
 ```python
 import json, os, secrets, uuid, subprocess
 
@@ -201,7 +205,6 @@ async def encrypt_file(secret: str = Form(...), password: str = Form(...),
 @app.post("/encrypt/string")
 async def encrypt_string(password: str = Form(...), secret: str = Form(...),
                          vault_id: Optional[str] = Form(None), name: str = Form(...)):
-    print(vault_id)
     vault = AnsibleEncrypt(password, secret, vault_id, name)
 
     return HTMLResponse(content=vault.encrypt(), status_code=200)
